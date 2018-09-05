@@ -10,7 +10,9 @@ const app = express();
 var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-
+//Initialize the body parser
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 //////////////////////////////////////////////
 // This will connect with the Database MONGODB
 //////////////////////////////////////////////
@@ -18,14 +20,16 @@ app.set('view engine', 'handlebars');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/rotten-potatoes', { useNewUrlParser: true });
 const Review = mongoose.model('Review', {
-    title: String
+    title: String,
+    description: String,
+    movieTitle: String
 });
 
 //Hardcoded resources
-let reviews = [
-    { title: "Great Review" },
-    { title: "Next Review" }
-]
+// let reviews = [
+//     { title: "Great Review" },
+//     { title: "Next Review" }
+// ];
   
 //////////////////////////////////////////////
 // These are the routes
@@ -38,12 +42,21 @@ app.get( '/', (req , res) => {
             res.render('reviews-index', { reviews: reviews})
         })
         .catch(err => {
-            console.error(err)
-        });
+            console.log(err.message)
+        })
 });
 //New Reviews route
 app.get('/reviews/new', (req, res) => {
     res.render('reviews-new', {});
+});
+//
+app.post('/reviews', (req, res) => {
+    Review.create(req.body).then((review) => {
+        console.log(review);
+        res.redirect('/');
+    }).catch((err) => {
+        console.log(err.message);
+    })
 });
 
 //////////////////////////////////////////////
