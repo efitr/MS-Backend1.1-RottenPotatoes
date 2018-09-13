@@ -1,6 +1,7 @@
-const Review = require('./models/review')
 
-export default function (app) {
+// const Review = require('../models/review')
+
+module.exports = function (app) {
 //GET root
   app.get('/', (req, res) => {
     Review.find()
@@ -26,6 +27,20 @@ export default function (app) {
       console.log(err.message);
     });
   });
+
+  app.post("/addname", (req, res) => {
+    var myData = new User(req.body);
+    myData.save()
+    .then(item => {
+    res.send("item saved to database");
+    })
+    .catch(err => {
+    res.status(400).send("unable to save to database");
+    });
+   });
+
+
+
 //GET specific rev
   app.get('/reviews/:id', (req, res) => {
     Review.findById(req.params.id)
