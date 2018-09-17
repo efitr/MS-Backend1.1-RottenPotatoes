@@ -1,5 +1,5 @@
 
-// const Review = require('../models/review')
+const Review = require('../models/models')
 
 module.exports = function (app) {
 //GET root

@@ -1,0 +1,19 @@
+
+//////////////////////////////////////////////
+// Database MONGODB
+//////////////////////////////////////////////
+//Setup Object Document Manager
+//Create the mongoose conection 
+const mongoose = require('mongoose');
+//Maybe I should handle this better
+////////////
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/rotten-potatoes', {useNewUrlParser: true});
+
+var reviewSchema = new mongoose.Schema({
+    title: String,
+    description: String,
+    movieTitle: String
+});
+
+var Review = mongoose.model("Review", reviewSchema);

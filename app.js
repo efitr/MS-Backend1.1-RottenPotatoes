@@ -17,16 +17,16 @@ app.set('view engine', 'handlebars');
 // override with POST having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'));
 
-//////////////////////////////////////////////
-// Database MONGODB
-//////////////////////////////////////////////
-//Setup Object Document Manager
-//Create the mongoose conection 
-var mongoose = require('mongoose');
-//Maybe I should handle this better
-////////////
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/rotten-potatoes', {useNewUrlParser: true});
+// //////////////////////////////////////////////
+// // Database MONGODB
+// //////////////////////////////////////////////
+// //Setup Object Document Manager
+// //Create the mongoose conection 
+// var mongoose = require('mongoose');
+// //Maybe I should handle this better
+// ////////////
+// mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://localhost/rotten-potatoes', {useNewUrlParser: true});
 
 // mongoose.connect(
 //   .then(() => {
@@ -36,13 +36,13 @@ mongoose.connect('mongodb://localhost/rotten-potatoes', {useNewUrlParser: true})
 //     throw err;
 //   })
 
-var reviewSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    movieTitle: String
-});
+// var reviewSchema = new mongoose.Schema({
+//     title: String,
+//     description: String,
+//     movieTitle: String
+// });
 
-var Review = mongoose.model("Review", reviewSchema);
+// var Review = mongoose.model("Review", reviewSchema);
 
 //////////////////////////////////////////////
 // Resources for networking in .controller/reviews.js
