@@ -24,12 +24,11 @@ app.use(methodOverride('_method'));
 //////////////////////////////////////////////
 // Resources for networking in .controller/reviews.js
 //////////////////////////////////////////////
-// const reviewRoute = require("./controllers/reviews.js")(app)
+
+module.exports = app;
 
 reviews(app);
 comments(app);
-
-module.exports = app;
 
 //////////////////////////////////////////////
 // This will connect with the web

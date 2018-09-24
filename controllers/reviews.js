@@ -12,8 +12,7 @@ function reviews(app) {
     Review.find()
       .then(reviews => {
         res.render('reviews-index', {reviews: reviews});
-      })
-      .catch(err => {
+      }).catch(err => {
         console.log(err);
       });
   });
@@ -26,39 +25,26 @@ function reviews(app) {
 //POST review
   app.post('/reviews', (req, res) => {
     Review.create(req.body)
-    .then((review) => {
-      console.log(review);
-      res.redirect('/reviews/${review._id}'); // Redirect to reviews/:id
-    }).catch((err) => {
-      console.log(err.message);
+      .then((review) => {
+        console.log(review);
+        res.redirect('/reviews/${review._id}'); // Redirect to reviews/:id
+      }).catch((err) => {
+        console.log(err.message);
     });
   });
-
-// //What the fuck is this
-//   app.post("/addname", (req, res) => {
-//     var myData = new User(req.body);
-//     myData.save()
-//     .then(item => {
-//     res.send("item saved to database");
-//     })
-//     .catch(err => {
-//     res.status(400).send("unable to save to database");
-//     });
-//    });
 
 //GET specific rev
   app.get('/reviews/:id', (req, res) => {
     Review.findById(req.params.id)
     .then((review) => {
-      // res.render('reviews-show', { review: review })
       Comment.find({ reviewId: req.params.id })
         .then(comments => {
           res.render('reviews-show', {
-            review: review, comments: comments
+            review: review, 
+            comments: comments
           })
         })
-    })
-    .catch((err) => {
+    }).catch((err) => {
       console.log(err.message);
     });
   });
@@ -75,8 +61,7 @@ function reviews(app) {
     Review.findByIdAndUpdate(req.params.id, req.body)
       .then(review => {
         res.redirect(`/reviews/${review._id}`);
-      })
-      .catch(err => {
+      }).catch(err => {
         console.log(err.message);
       });
   });
