@@ -1,11 +1,4 @@
 
-//////////////////////////////////////////////
-// Basic set up
-//////////////////////////////////////////////
-//This will be importing the neccesary controllers
-const reviews = require('./controllers/reviews')
-const comments = require('./controllers/comments')
-
 //Create the entry to the setup of the framework
 const express = require('express');
 const app = express();
@@ -27,8 +20,19 @@ app.use(methodOverride('_method'));
 
 module.exports = app;
 
-reviews(app);
-comments(app);
+
+//////////////////////////////////////////////
+// Basic set up
+//////////////////////////////////////////////
+//This will be importing the neccesary controllers
+const reviews = require('./controllers/reviews')(app)
+const comments = require('./controllers/comments')(app)
+
+
+// reviews(app);
+// comments(app);
+
+
 
 //////////////////////////////////////////////
 // This will connect with the web
@@ -36,4 +40,3 @@ comments(app);
 app.listen(3000, () => {
   console.log('App listening on port 3000!');
 });
-

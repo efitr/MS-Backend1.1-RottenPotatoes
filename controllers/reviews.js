@@ -26,8 +26,8 @@ function reviews(app) {
   app.post('/reviews', (req, res) => {
     Review.create(req.body)
       .then((review) => {
-        console.log(review);
-        res.redirect('/reviews/${review._id}'); // Redirect to reviews/:id
+        console.log(review._id);
+        res.redirect(`/reviews/${review._id}`); // Redirect to reviews/:id
       }).catch((err) => {
         console.log(err.message);
     });
