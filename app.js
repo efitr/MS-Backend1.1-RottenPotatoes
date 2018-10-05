@@ -5,6 +5,7 @@ const app = express();
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const PORT = 3000;
 
 // app.use(bodyParser.json()); //quite likely unnecesary
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,6 +38,6 @@ const comments = require('./controllers/comments')(app)
 //////////////////////////////////////////////
 // This will connect with the web
 //////////////////////////////////////////////
-app.listen(3000, () => {
-  console.log('App listening on port 3000!');
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}!`);
 });
