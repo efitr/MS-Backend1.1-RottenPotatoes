@@ -6,7 +6,7 @@
 //Create the mongoose conection 
 //For this we installed: npm install -g mongoose, something along this lines
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes', {useNewUrlParser: true});
+//mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes', {useNewUrlParser: true});
 
 var Review = mongoose.model('Review', {
     
